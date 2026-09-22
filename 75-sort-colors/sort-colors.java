@@ -1,14 +1,18 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int zero = 0, one = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) zero++;
-            else if (nums[i] == 1) one++;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (zero-- > 0) nums[i] = 0;
-            else if (one-- > 0) nums[i] = 1;
-            else nums[i] = 2;
+        int left = 0;
+        int mid = 0;
+        int right = nums.length-1;
+
+        while (mid <= right) {
+            int temp = nums[mid];
+            if (nums[mid] == 0) {
+                nums[mid++] = nums[left];
+                nums[left++] = temp;
+            } else if (nums[mid] == 2) {
+                nums[mid] = nums[right];
+                nums[right--] = temp;
+            } else mid++;
         }
     }
 }
