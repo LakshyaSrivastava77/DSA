@@ -5,7 +5,7 @@ class Solution {
         int left = 0, right = 0;
         boolean hasLeft = false;
 
-        HashMap<String, String> map = new HashMap<>(knowledge.size());
+        HashMap<String, String> map = new HashMap<>();
         for (List<String> pairs : knowledge) {
             map.put(pairs.get(0), pairs.get(1));
         }
