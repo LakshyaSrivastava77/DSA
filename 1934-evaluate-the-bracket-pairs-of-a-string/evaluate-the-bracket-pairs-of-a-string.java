@@ -5,7 +5,7 @@ class Solution {
         int left = 0, right = 0;
         boolean hasLeft = false;
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(knowledge.size());
         for (List<String> pairs : knowledge) {
             map.put(pairs.get(0), pairs.get(1));
         }
@@ -22,7 +22,7 @@ class Solution {
             if (curr == ')' && hasLeft == true) {
                 right = i;
                 key = s.substring(left, right);
-                str.append(getValue(key, map));
+                str.append(map.getOrDefault(key, "?"));
                 hasLeft = false;
                 continue;
             }
@@ -33,10 +33,5 @@ class Solution {
         }
 
         return str.toString();
-    }
-
-    public String getValue (String key, HashMap<String, String> map) {
-        if (map.containsKey(key)) return map.get(key);
-        return "?";
     }
 }
