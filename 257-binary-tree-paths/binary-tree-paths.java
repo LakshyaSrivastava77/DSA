@@ -30,7 +30,7 @@ class Solution {
         int n = sb.length();
 
         if (n== 0) sb.append(root.val);
-        else sb.append("->" + root.val);
+        else sb.append("->").append(root.val);
 
         if (root.left == null && root.right == null) {
             lst.add(sb.toString());
