@@ -15,31 +15,35 @@
  */
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> lst = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        List<String> lst = new ArrayList<String>();
 
-        if (root.left == null && root.right == null) {
-            lst.add(""+root.val);
-            return lst;
-        }
-
-        if (root.left != null) pathFinder(root.left, lst, ""+root.val);
-        if (root.right != null) pathFinder(root.right, lst, ""+root.val);
+        pathFinder(lst, sb, root);
         return lst;
     }
 
-    private void pathFinder(TreeNode root, List<String> lst, String str) {
-        str = str + "->" + root.val;
-        if (root.left == null && root.right == null) {
-            lst.add(str);
+    private void pathFinder (List<String> lst, StringBuilder sb, TreeNode root) {
+        if (root == null) {
             return;
         }
-        
-        if (root.right != null) {
-            pathFinder(root.right, lst, str);
+
+        int n = sb.length();
+
+        if (n== 0) sb.append(root.val);
+        else sb.append("->" + root.val);
+
+        if (root.left == null && root.right == null) {
+            lst.add(sb.toString());
+            sb.delete(n , sb.length());
+            return;
         }
-        
+
         if (root.left != null) {
-            pathFinder(root.left, lst, str);
+            pathFinder(lst, sb, root.left);
         }
+        if (root.right != null) {
+            pathFinder(lst, sb, root.right);
+        }
+        sb.delete(n , sb.length());
     }
 }
