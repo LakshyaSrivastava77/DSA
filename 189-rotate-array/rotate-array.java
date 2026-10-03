@@ -4,20 +4,13 @@ class Solution {
         k = k % n;
         if (k == 0) return;
         k=n-k;
+        
+        helper(nums, 0, k-1);
+        helper(nums, k, n-1);
+        helper(nums, 0, n-1);
+    }
 
-        int left = 0, right = k-1;
-        while (left < right) {
-            int temp = nums[left];
-            nums[left++] = nums[right];
-            nums[right--] = temp;
-        }
-        left = k; right = n-1;
-        while (left < right) {
-            int temp = nums[left];
-            nums[left++] = nums[right];
-            nums[right--] = temp;
-        }
-        left = 0; right = n-1;
+    private void helper(int[] nums, int left, int right) {
         while (left < right) {
             int temp = nums[left];
             nums[left++] = nums[right];
